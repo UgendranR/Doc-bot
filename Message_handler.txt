@@ -4,7 +4,6 @@ if(operation.equals("chat"))
 {
 	if(!msg.equalsIgnoreCase("Great! Tell me more") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
 	{
-		response = Map();
 		response.put("action","reply");
 		response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
 		response.put("input",{"type":"select","options":{"Great! Tell me more","Thanks. I'm ok for now"}});
@@ -13,24 +12,25 @@ if(operation.equals("chat"))
 }
 if(!msg.isNull())
 {
-	response.put("action","context");
 	if(msg.equalsIgnoreCase("Great! Tell me more"))
 	{
-		response.put("context_id","accept_discount");
-		question = {"name":"name","replies":{"I just need a few more details from you to make that happen.",{"text":"For First time Visitors, what's your name?","field_name":"siq_name"}}};
+		response.put("action","context");
+		response.put("context_id","schedule");
+		question = {"name":"name","replies":{"I just need a few more details from you to make that happen.","What is your full name?"}};
+		response.put("questions",{question});
 	}
-	else if("Thanks. I'm ok for now")
+	else if(msg.equalsIgnoreCase("Thanks. I'm ok for now"))
 	{
-		response.put("context_id","ignore_discount");
-		question = {"name":"isnotified","replies":{"Would you like to get notified about our promotional offers in the future?"},"input":{"type":"select","options":{"Yeah","Nope"}}};
+		response.put("action","context");
+		response.put("context_id","nothing");
+		question = {"name":"end","replies":{"Don't worry","Do check out this website for any help"}};
+		response.put("questions",{question});
 	}
 	else
 	{
 		response.put("action","reply");
 		response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
 		response.put("input",{"type":"select","options":{"Great! Tell me more","Thanks. I'm ok for now"}});
-		return response;
 	}
-	response.put("questions",{question});
 }
 return response;

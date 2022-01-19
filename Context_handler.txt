@@ -1,0 +1,102 @@
+response = Map();
+response.put("action","context");
+if(context_id.equals("accept_discount"))
+{
+	name = answers.get("name").get("text");
+	response.put("context_id","accept_discount");
+	if(!answers.containsKey("email"))
+	{
+		question = {"name":"email","replies":{"...and your email address?","We will use this to send personalised offers once in a while"}};
+	}
+	else
+	{
+		email = answers.get("email").get("text");
+		sendmail
+		[
+			from :zoho.adminuserid
+			to :email
+			subject :"Added to VIP Program"
+			message :"Welcome to our VIP Program. Click to confirm"
+		]
+		if(!answers.containsKey("end"))
+		{
+			question = {"name":"end","replies":{"Thank you. You have been added to our VIP offer program. Please check your inbox for more details."}};
+		}
+		else
+		{
+			response.put("action","end");
+			response.put("replies",{"Have a great day " + name});
+		}
+	}
+}
+else if(context_id.equals("ignore_discount"))
+{
+	isnotified = answers.get("isnotified").get("text");
+	response.put("context_id","ignore_discount");
+	if(isnotified.equalsIgnoreCase("Yeah"))
+	{
+		if(!answers.containsKey("email"))
+		{
+			question = {"name":"email","replies":{"Great! I just need a few more details to add you to our list","To begin with, what is your email address? We will send you the promotional offers here."}};
+		}
+		else
+		{
+			email = answers.get("email").get("text");
+			if(!answers.containsKey("name"))
+			{
+				question = {"name":"name","replies":{{"text":"Thank you. What's your name?","field_name":"siq_name"}}};
+			}
+			else
+			{
+				name = answers.get("name").get("text");
+				crmdata = zoho.crm.searchRecords("Leads","(Email:equals:" + email + ")",0,0,{"converted":"both"},"zohocrm");
+				info crmdata;
+				if(!crmdata.isEmpty())
+				{
+					// update existing
+					_crmdata = crmdata.get(0);
+					info _crmdata;
+					id = _crmdata.get("id");
+					module = "Leads";
+					if(_crmdata.get("$converted") == true)
+					{
+						converted_detail = _crmdata.get("$converted_detail").toMap();
+						id = converted_detail.get("contact");
+						module = "Contacts";
+					}
+					crmdata = zoho.crm.updateRecord(module,id,{"Last_Name":name},Map(),"zohocrm");
+				}
+				else
+				{
+					// create new lead
+					crmdata = zoho.crm.createRecord("Leads",{"Email":email,"Last_Name":name},Map(),"zohocrm");
+				}
+				leadid = crmdata.get("id");
+				info leadid;
+				if(!answers.containsKey("end"))
+				{
+					sendmail
+					[
+						from :zoho.adminuserid
+						to :email
+						subject :"SmartBot Test Email"
+						message :"Subscribe"
+					]
+					question = {"name":"end","replies":{"Thank you. We have sent you a confirmation email. Please click the button inside it to subscribe"}};
+				}
+				else
+				{
+					response.put("action","end");
+					response.put("replies",{"Have a great day " + name});
+				}
+			}
+		}
+	}
+	else if(isnotified.equalsIgnoreCase("Nope"))
+	{
+		response.put("action","end");
+		response.put("replies",{"Thank you for visiting us today","Have a great day"});
+	}
+}
+response.put("questions",{question});
+return response;

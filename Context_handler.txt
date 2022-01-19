@@ -1,7 +1,3 @@
-/*
-			Note : Authenticate Zoho Bookings connection by clicking Manage Connection Link at the bottom of the page
-			Replace serviceId and staffId with the ones from your zoho bookings account.
-			*/
 serviceId = -1;
 staffId = -1;
 response = Map();
@@ -12,14 +8,14 @@ if(context_id.equals("schedule"))
 	name = answers.get("name").get("text");
 	if(!answers.containsKey("email"))
 	{
-		question = {"name":"email","replies":{"Your email address?"}};
+		question = {"name":"email","replies":{"Your email address?"},"input" : {"type":"email","placeholder" : "Your email address?","error" :           {"Enter a valid email"}}};
 	}
 	else
 	{
 		email = answers.get("email").get("text");
 		if(!answers.containsKey("phone"))
 		{
-			question = {"name":"phone","replies":{"Your mobile number?"}};
+			question = {"name":"phone","replies":{"Your mobile number?"},"input" :{"type":"tel","placeholder" : "Enter your phone number","error" : {"Enter a valid phone number"}}};
 		}
 		else
 		{
@@ -49,78 +45,25 @@ if(context_id.equals("schedule"))
 					{
 						company = answers.get("visit").get("text");
 						if(!answers.containsKey("date"))
-						{
-							slots = {"type":"calendar","time":true,"tz":true,"from":"+0","label":"Schedule a meeting","to":"+5","select_label":"Choose a slot"};
-							question = {"name":"date","replies":{"When do you prefer to meet the doctor?","Would you like to pick a time slot as per your convenience?","Choose a suitable date and time"},"skippable":"true","input":slots};
-						}
-						else
-						{
-							date = answers.get("date");
-							if(!date.get("text").equalsIgnoreCase("-"))
-							{
-								appointmentDate = date.get("text");
-								if(!answers.containKey("slots"))
-								{
-									availableSlots = zoho.bookings.getAvailableSlots(serviceId,staffId,appointmentDate,"zoho_bookings");
-									slots = availableSlots.get("response").get("returnvalue").get("data");
-									if(slots.isEmpty())
-									{
-										response.put("action","end");
-										response.put("replies",{"Sorry, we don't have a slots for that day"});
-										return response;
-									}
-									else
-									{
-										question = {"name":"slots","replies":{"Please choose the following slots as for your convenience"},"suggestions":slots};
-										response.put("questions",{question});
-										return response;
-									}
-								}
-								else
-								{
-									slots = answers.get("slots").get("text");
-									appointmentDate = appointmentDate + " " + slots + ":00";
-									if(!answers.containsKey("thanks"))
-									{
-										timeZone = "America/Los_Angeles";
-										customerDetails = Map();
-										customerDetails.put("name",name);
-										customerDetails.put("email",email);
-										customerDetails.put("phone_number",phone);
-										apponitmentResponse = zoho.bookings.createAppointment(serviceId,appointmentDate,customerDetails,staffId,timeZone,true,"zoho_bookings");
-										status = apponitmentResponse.get("response").get("status");
-										if(status.equalsIgnoreCase("success"))
-										{
-											response.put("action","end");
-											response.put("replies",{"You have successfully registered","Have a nice day"});
-											return response;
-										}
-										else
-										{
-											response.put("action","end");
-											response.put("replies",{"Sorry, error occured!"});
-											return response;
-										}
-									}
-									else
-									{
-										response.put("action","end");
-										response.put("replies",{"Have a nice day"});
-										return response;
-									}
-								}
-							}
-							else
-							{
-								response.put("action","end");
-								response.put("replies",{"Have a nice day"});
-								return response;
-							}
-						}
+					{
+					   question = {"name":"date","replies":{"When do you prefer to meet the doctor?","Would you like to pick a time slot as per your convenience?","Choose a suitable date and time"},"input": {"type":"calendar","label": "Schedule a meeting","from": "+0","to": "+5","time": true,"tz": true,"select_label": "Choose a slot"}};
 					}
+					else
+					{
+						company = answers.get("date").get("text");
+						if(!answers.containsKey("doct"))
+				{					
+					question = {"name":"doct","replies":{"You have successfully registered","Have a nice day"}};
 				}
+				else
+				{
+					company = answers.get("doct").get("text");
+			    }
+			  }
 			}
+		  }
 		}
+	  }
 	}
 	response.put("questions",{question});
 }

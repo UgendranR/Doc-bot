@@ -1,0 +1,5 @@
+response = Map();
+response.put("action","reply");
+response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
+response.put("input",{"type":"select","options":{"Great! Tell me more","Thanks. I'm ok for now"}});
+return response;

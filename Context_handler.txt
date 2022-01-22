@@ -74,7 +74,7 @@ if(context_id.equals("schedule"))
 										if(!answers.containsKey("success"))
 										{
 											slt5 = {"type":"select","options":{"Yes","No"}};
-											question = {"name":"success","replies":{"Making an appointment in " + hospital + " on " + date + ".","Confirming your Appointment","Great","You have successfully made an appointment","Appointment Details:" <br> "Name: " + name + "<br> Gender: " + gender + "<br>Specialist: " + doctor + " Specialist <br> Hospital: " + hospital + " Hospital <br> Date & Time: " + date + " . ","Are the Details correct"},"input":slt5};
+											question = {"name":"success","replies":{"Making an appointment in " + hospital + " on " + date + ".","Confirming your Appointment","Great","You have successfully made an appointment","Appointment Details: <br> Name: " + name + "<br> Gender: " + gender + "<br>Specialist: " + doctor + " Specialist <br> Hospital: " + hospital + " Hospital <br> Date & Time: " + date + " . ","Are the Details correct"},"input":slt5};
 										}
 										else
 										{
@@ -101,19 +101,19 @@ if(context_id.equals("schedule"))
 														subject :"Appointment Detail"
 														message :"Your appointment has been confirmed in " + hospital + " Hospital.The following are the appointment details.<br><br>Appointment Details: <br> Name: " + name + "<br> Gender: " + gender + "<br>Specialist: " + doctor + " Specialist <br> Hospital: " + hospital + " Hospital <br> Date & Time: " + date + " . "
 													]
-										if(!answers.containsKey("end"))
-					{
-						question = {"name":"end","replies":{"Thanks for booking a meeting with us","We will get back to you shortly","Have a great day."}};
-						response.put("action","end");
-						response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
-						return response;
-					}
-					else
-					{
-						response.put("action","end");
-						response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
-						return response;
-					}
+													if(!answers.containsKey("end"))
+													{
+														question = {"name":"end","replies":{"Thanks for booking a meeting with us","We will get back to you shortly","Have a great day."}};
+														response.put("action","end");
+														response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+														return response;
+													}
+													else
+													{
+														response.put("action","end");
+														response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+														return response;
+													}
 												}
 											}
 										}

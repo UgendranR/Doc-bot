@@ -2,17 +2,17 @@ response = Map();
 msg = message.get("text");
 if(operation.equals("chat"))
 {
-	if(!msg.equalsIgnoreCase("Great! Tell me more") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
+	if(!msg.equalsIgnoreCase("I need to make an appointment") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
 	{
 		response.put("action","reply");
 		response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
-		response.put("input",{"type":"select","options":{"Great! Tell me more","Thanks. I'm ok for now"}});
+		response.put("input",{"type":"select","options":{"I need to make an appointment","Thanks. I'm ok for now"}});
 		return response;
 	}
 }
 if(!msg.isNull())
 {
-	if(msg.equalsIgnoreCase("Great! Tell me more"))
+	if(msg.equalsIgnoreCase("I need to make an appointment"))
 	{
 		response.put("action","context");
 		response.put("context_id","schedule");
@@ -30,7 +30,7 @@ if(!msg.isNull())
 	{
 		response.put("action","reply");
 		response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
-		response.put("input",{"type":"select","options":{"Great! Tell me more","Thanks. I'm ok for now"}});
+		response.put("input",{"type":"select","options":{"I need to make an appointment","Thanks. I'm ok for now"}});
 	}
 }
 return response;

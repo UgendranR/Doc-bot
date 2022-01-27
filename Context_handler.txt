@@ -73,7 +73,7 @@ if(context_id.equals("schedule"))
 										visit = answers.get("visit").get("text");
 										if(!answers.containsKey("slide"))
 										{
-											question = {"name":"slide","replies":{"When would you like to schedule the appointment"},"input":{"type":"slider","values":{"10am-1pm","2-5 pm","6-9 pm"}}};
+											question = {"name":"slide","replies":{"When would you like to schedule the appointment?"},"input":{"type":"slider","values":{"10am-1pm","2-5 pm","6-9 pm"}}};
 										}
 										else
 										{

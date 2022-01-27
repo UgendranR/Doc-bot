@@ -22,7 +22,7 @@ if(!msg.isNull())
 	else if(msg.equalsIgnoreCase("Our Doctors"))
 	{
 		response.put("action","end");
-		response.put("replies",{"Dr.Neil Jackson - Dean","Dr.Nate Baston - Ear Specialist","Dr.Jason Stewart - ENT physician","Dr.Miasha Nakahara - Hearing Aid Specialist","Do check out this website for further details!"});
+		response.put("replies",{"Dr.Neil Jackson - Dean","Dr.Nate Baston - Ear Specialist","Dr.Jason Stewart - ENT physician","Dr.Miasha Nakahara - Nose Specialist","Do check out this website for further details!"});
 		return response;
 	}
 	else if(msg.equalsIgnoreCase("Opening hours"))

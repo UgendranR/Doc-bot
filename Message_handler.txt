@@ -2,35 +2,52 @@ response = Map();
 msg = message.get("text");
 if(operation.equals("chat"))
 {
-	if(!msg.equalsIgnoreCase("I need to make an appointment") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
+	if(!msg.equalsIgnoreCase("Schedule an appointment") && !msg.equalsIgnoreCase("Our Doctors") && !msg.equalsIgnoreCase("Opening hours") && !msg.equalsIgnoreCase("Contact Us") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
 	{
 		response.put("action","reply");
-		response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
-		response.put("input",{"type":"select","options":{"I need to make an appointment","Thanks. I'm ok for now"}});
+		response.put("replies",{"Hey there! DoC Bot here. Welcome to Health Care ENT Centre."," What Can I do for you?"});
+		response.put("input",{"type":"select","options":{"Schedule an appointment","Our Doctors","Opening hours","Contact Us","Thanks. I'm ok for now"}});
 		return response;
 	}
 }
 if(!msg.isNull())
 {
-	if(msg.equalsIgnoreCase("I need to make an appointment"))
+	if(msg.equalsIgnoreCase("Schedule an appointment"))
 	{
 		response.put("action","context");
 		response.put("context_id","schedule");
-		question = {"name":"name","replies":{"I just need a few more details from you to make that happen.","What is your full name?"}};
+		question = {"name":"name","replies":{"I just need a few more details from you to make that happen.","What is your name?"}};
 		response.put("questions",{question});
+	}
+	else if(msg.equalsIgnoreCase("Our Doctors"))
+	{
+		response.put("action","end");
+		response.put("replies",{"Dr.Neil Jackson - Dean","Dr.Nate Baston - Ear Specialist","Dr.Jason Stewart - ENT physician","Dr.Miasha Nakahara - Hearing Aid Specialist","Do check out this website for further details!"});
+		return response;
+	}
+	else if(msg.equalsIgnoreCase("Opening hours"))
+	{
+		response.put("action","end");
+		response.put("replies",{"Monday - Friday: 10:00 AM - 9:00 PM","Saturday - Sunday: 10:00 AM - 06:00 PM","Do check out this website for further details!"});
+		return response;
+	}
+	else if(msg.equalsIgnoreCase("Contact Us"))
+	{
+		response.put("action","end");
+		response.put("replies",{"Email ID: entcare@company.com","Phone No: +91 8778701330","Do check out this website for further details!"});
+		return response;
 	}
 	else if(msg.equalsIgnoreCase("Thanks. I'm ok for now"))
 	{
-		response.put("action","context");
-		response.put("context_id","nothing");
-		question = {"name":"end","replies":{"Don't worry","Do check out this website for any help"}};
-		response.put("questions",{question});
+		response.put("action","end");
+		response.put("replies",{"Don't worry","Do check out this website for any help"});
+		return response;
 	}
 	else
 	{
 		response.put("action","reply");
-		response.put("replies",{"Hey there! DoCBot here. Welcome to ENT Care Centre."," Looking for a Doctor here! You can schedule an appoinment with our expert consultants."});
-		response.put("input",{"type":"select","options":{"I need to make an appointment","Thanks. I'm ok for now"}});
+		response.put("replies",{"Hey there! DoC Bot here. Welcome to Health Care ENT Centre."," What Can I do for you?"});
+		response.put("input",{"type":"select","options":{"Schedule an appointment","Our Doctors","Opening hours","Contact Us","Thanks. I'm ok for now"}});
 	}
 }
 return response;

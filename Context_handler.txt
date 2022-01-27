@@ -18,101 +18,118 @@ if(context_id.equals("schedule"))
 		else
 		{
 			phone = answers.get("phone").get("text");
-			if(!answers.containsKey("gender"))
+			if(!answers.containsKey("age"))
 			{
-				slot = {"type":"select","options":{"Male","Female"}};
-				question = {"name":"gender","replies":{"Please select your gender"},"input":slot};
+				question = {"name":"age","replies":{"Your age?"}};
 			}
 			else
 			{
-				gender = answers.get("gender").get("text");
-				if(!answers.containsKey("location"))
+				age = answers.get("age").get("text");
+				if(!answers.containsKey("gender"))
 				{
-					question = {"name":"location","replies":{"Thanks","Please Select your Location from the Map","Select your current location"},"input":{"type":"location","radius":"2 kms","label":"Share Location","select_label":"Send my location"}};
+					slot = {"type":"select","options":{"Male","Female","Others"}};
+					question = {"name":"gender","replies":{"Please select your gender"},"input":slot};
 				}
 				else
 				{
-					location = answers.get("location").get("text");
-					if(!answers.containsKey("slide"))
+					gender = answers.get("gender").get("text");
+					if(!answers.containsKey("blood"))
 					{
-						question = {"name":"slide","replies":{"Great","Select a range for hospitals"},"input":{"type":"range-slider","values":{"1","2","3","4","5","6","7","8","9"}}};
+						slot = {"type":"select","options":{"A+","O+","B+","AB+","A-","O-","B-","AB-"}};
+						question = {"name":"blood","replies":{"Select your blood group"},"input":slot};
 					}
 					else
 					{
-						slide = answers.get("slide").get("text");
-						if(!answers.containsKey("hospital"))
+						blood = answers.get("blood").get("text");
+						if(!answers.containsKey("location"))
 						{
-							slt3 = {"type":"select","options":{"Kauvery","Apollo","LifeLine"}};
-							question = {"name":"hospital","replies":{"Searching for hospitals in" + slide + " km range in your area","Almost there","Choose any hospital based on your convenience","This is all what I found..."},"input":slt3};
+							question = {"name":"location","replies":{"Your Address?"},"input":{"type":"location","radius":"2 kms","label":"Share Location","select_label":"Send my location"}};
 						}
 						else
 						{
-							hospital = answers.get("hospital").get("text");
-							if(!answers.containsKey("doctor"))
+							location = answers.get("location").get("text");
+							if(!answers.containsKey("concern"))
 							{
-								slt = {"type":"select","options":{"Ear","Nose","Throat"}};
-								question = {"name":"doctor","replies":{"You are looking for a doctor in which department?"},"input":slt};
+								question = {"name":"concern","replies":{"Your Concern?"},"input":{"type":"multiple-select","options":{"Ear","Nose","Throat"},"max_selection":"3"}};
 							}
 							else
 							{
-								doctor = answers.get("doctor").get("text");
-								if(!answers.containsKey("visit"))
+								concern = answers.get("concern").get("text");
+								if(!answers.containsKey("covid"))
 								{
-									slt1 = {"type":"select","options":{"First Visit","Follow-Up Visit"}};
-									question = {"name":"visit","replies":{"Are you visiting for the first time, or is it a follow-up visit?"},"input":slt1};
+									slot = {"type":"select","options":{"Yes","No"}};
+									question = {"name":"covid","replies":{"Are you Vaccinated?"},"input":slot};
 								}
 								else
 								{
-									visit = answers.get("visit").get("text");
-									if(!answers.containsKey("date"))
+									covid = answers.get("covid").get("text");
+									if(!answers.containsKey("visit"))
 									{
-										question = {"name":"date","replies":{"When do you prefer to meet the doctor?","Would you like to pick a time slot as per your convenience?","Choose a suitable date and time"},"input":{"type":"calendar","label":"Schedule a meeting","from":"+0","to":"+5","time":true,"tz":true,"select_label":"Choose a slot"}};
+										slt1 = {"type":"select","options":{"First Visit","Follow-Up Visit"}};
+										question = {"name":"visit","replies":{"Are you visiting for the first time, or is it a follow-up visit?"},"input":slt1};
 									}
 									else
 									{
-										date = answers.get("date").get("text");
-										if(!answers.containsKey("success"))
+										visit = answers.get("visit").get("text");
+										if(!answers.containsKey("slide"))
 										{
-											slt5 = {"type":"select","options":{"Yes","No"}};
-											question = {"name":"success","replies":{"Making an appointment in " + hospital + " on " + date + ".","Confirming your Appointment","Great","You have successfully made an appointment","Appointment Details: <br> Name: " + name + "<br> Gender: " + gender + "<br>Specialist: " + doctor + " Specialist <br> Hospital: " + hospital + " Hospital <br> Date & Time: " + date + " . ","Are the Details correct"},"input":slt5};
+											question = {"name":"slide","replies":{"When would you like to schedule the appointment"},"input":{"type":"slider","values":{"10am-1pm","2-5 pm","6-9 pm"}}};
 										}
 										else
 										{
-											company = answers.get("success").get("text");
-											if(!answers.containsKey("doctor"))
+											slide = answers.get("slide").get("text");
+											if(!answers.containsKey("date"))
 											{
-												question = {"name":"doctor","replies":{"Sending confirmation mail to ur email id","Confirmation mail sent!"}};
+												question = {"name":"date","replies":{"Select your appointment date"},"input":{"type":"calendar","label":"Schedule a meeting","from":"+0","to":"+5","time":false,"tz":false,"select_label":"Choose a slot"}};
 											}
 											else
 											{
-												doctor = answers.get("doctor").get("text");
-												if(!answers.containsKey("rating"))
+												date = answers.get("date").get("text");
+												if(!answers.containsKey("success"))
 												{
-													slt6 = {"type":"star-rating","level":"5"};
-													question = {"name":"rating","replies":{"Share your experience"},"input":slt6};
+													slt5 = {"type":"select","options":{"Yes,verified."}};
+													question = {"name":"success","replies":{"Making an appointment on " + date + ".","Appointment Details:","Name: " + name,"Gender: " + gender,"Age: " + age,"Blood Group: " + blood,"Specialist: " + concern + " Specialist"," Date & Time: " + date + " " + slide,"Please verify the details before confirming your appointment"},"input":slt5};
 												}
 												else
 												{
-													rating = answers.get("rating").get("text");
-													sendmail
-													[
-														from :zoho.loginuserid
-														to :email
-														subject :"Appointment Detail"
-														message :"Your appointment has been confirmed in " + hospital + " Hospital.The following are the appointment details.<br><br>Appointment Details: <br> Name: " + name + "<br> Gender: " + gender + "<br>Specialist: " + doctor + " Specialist <br> Hospital: " + hospital + " Hospital <br> Date & Time: " + date + " . "
-													]
-													if(!answers.containsKey("end"))
+													company = answers.get("success").get("text");
+													if(!answers.containsKey("doctor"))
 													{
-														question = {"name":"end","replies":{"Thanks for booking a meeting with us","We will get back to you shortly","Have a great day."}};
-														response.put("action","end");
-														response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
-														return response;
+														slot = {"type":"select","options":{"Ok,Thanks!"}};
+														question = {"name":"doctor","replies":{"Great! You have successfully made an appointment","Sending confirmation mail to your email id","Confirmation mail sent!"},"input":slot};
 													}
 													else
 													{
-														response.put("action","end");
-														response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
-														return response;
+														doctor = answers.get("doctor").get("text");
+														if(!answers.containsKey("rating"))
+														{
+															slt6 = {"type":"star-rating","level":"5"};
+															question = {"name":"rating","replies":{"Share your experience"},"input":slt6};
+														}
+														else
+														{
+															rating = answers.get("rating").get("text");
+															sendmail
+															[
+																from :zoho.loginuserid
+																to :email
+																subject :"Appointment Detail"
+																message :"Your appointment has been confirmed.The following are the appointment details.<br><br>Appointment Details: <br> Name: " + name + "<br> Gender: " + gender + "<br>Age: " + age + "<br> Blood Group: " + blood + "<br>Specialist: " + concern + " Specialist <br> Date & Time: " + date + " " + slide + "."
+															]
+															if(!answers.containsKey("end"))
+															{
+																question = {"name":"end","replies":{"Thanks for contacting us","Have a nice day ;)"}};
+																response.put("action","end");
+																response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+																return response;
+															}
+															else
+															{
+																response.put("action","end");
+																response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+																return response;
+															}
+														}
 													}
 												}
 											}

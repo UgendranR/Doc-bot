@@ -6,14 +6,14 @@ if(context_id.equals("schedule"))
 	name = answers.get("name").get("text");
 	if(!answers.containsKey("email"))
 	{
-		question = {"name":"email","replies":{"May I have your email address, please?"},"input":{"type":"email","placeholder":"Your email address?","error":{"Seems like the value is invalid.","Please enter a valid email address"}}};
+		question = {"name":"email","replies":{"May I have your email address, please?"},"input":{"type":"email","placeholder":"Your email address?","error":{"Please enter a valid email address"}}};
 	}
 	else
 	{
 		email = answers.get("email").get("text");
 		if(!answers.containsKey("phone"))
 		{
-			question = {"name":"phone","replies":{"Please, enter your mobile number?"},"input":{"type":"tel","placeholder":"Enter your phone number","error":{"Seems like the value is invalid.","Please enter a valid phone number"},"country_code": "+91"}};
+			question = {"name":"phone","replies":{"Please, enter your mobile number?"},"input":{"type":"tel","placeholder":"Enter your phone number","error":{"Please enter a valid phone number"},"country_code": "+91"}};
 		}
 		else
 		{

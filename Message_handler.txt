@@ -2,11 +2,11 @@ response = Map();
 msg = message.get("text");
 if(operation.equals("chat"))
 {
-	if(!msg.equalsIgnoreCase("Schedule an appointment") && !msg.equalsIgnoreCase("Our Doctors") && !msg.equalsIgnoreCase("Opening hours") && !msg.equalsIgnoreCase("Contact Us") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
+	if(!msg.equalsIgnoreCase("Schedule an appointment") && !msg.equalsIgnoreCase("Doctors Info") && !msg.equalsIgnoreCase("Working hours") && !msg.equalsIgnoreCase("Contact Details") && !msg.equalsIgnoreCase("Thanks. I'm ok for now"))
 	{
 		response.put("action","reply");
 		response.put("replies",{"Hey there! DoC Bot here. Welcome to Health Care ENT Centre."," What Can I do for you?"});
-		response.put("input",{"type":"select","options":{"Schedule an appointment","Our Doctors","Opening hours","Contact Us","Thanks. I'm ok for now"}});
+		response.put("input",{"type":"select","options":{"Schedule an appointment","Doctors Info","Working hours","Contact Details","Thanks. I'm ok for now"}});
 		return response;
 	}
 }
@@ -20,19 +20,19 @@ if(!msg.isNull())
   "type":"name","placeholder" : "Enter your name","error" : ["Please, enter a valid name"]}};
 		response.put("questions",{question});
 	}
-	else if(msg.equalsIgnoreCase("Our Doctors"))
+	else if(msg.equalsIgnoreCase("Doctors Info"))
 	{
 		response.put("action","end");
 		response.put("replies",{"Dr.Neil Jackson - Dean","Dr.Nate Baston - Ear Specialist","Dr.Jason Stewart - ENT physician","Dr.Miasha Nakahara - Nose Specialist","Do check out this website for further details!"});
 		return response;
 	}
-	else if(msg.equalsIgnoreCase("Opening hours"))
+	else if(msg.equalsIgnoreCase("Working hours"))
 	{
 		response.put("action","end");
 		response.put("replies",{"Monday - Friday: 10:00 AM - 9:00 PM","Saturday - Sunday: 10:00 AM - 06:00 PM","Do check out this website for further details!"});
 		return response;
 	}
-	else if(msg.equalsIgnoreCase("Contact Us"))
+	else if(msg.equalsIgnoreCase("Contact Details"))
 	{
 		response.put("action","end");
 		response.put("replies",{"Email ID: entcare@company.com","Phone No: +91 8778701330","Do check out this website for further details!"});
@@ -48,7 +48,7 @@ if(!msg.isNull())
 	{
 		response.put("action","reply");
 		response.put("replies",{"Hey there! DoC Bot here. Welcome to Health Care ENT Centre."," What Can I do for you?"});
-		response.put("input",{"type":"select","options":{"Schedule an appointment","Our Doctors","Opening hours","Contact Us","Thanks. I'm ok for now"}});
+		response.put("input",{"type":"select","options":{"Schedule an appointment","Doctors Info","Working hours","Contact Details","Thanks. I'm ok for now"}});
 	}
 }
 return response;

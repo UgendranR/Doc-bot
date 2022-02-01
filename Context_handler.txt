@@ -6,21 +6,21 @@ if(context_id.equals("schedule"))
 	name = answers.get("name").get("text");
 	if(!answers.containsKey("email"))
 	{
-		question = {"name":"email","replies":{"Your email address?"},"input":{"type":"email","placeholder":"Your email address?","error":{"Enter a valid email"}}};
+		question = {"name":"email","replies":{"May I have your email address, please?"},"input":{"type":"email","placeholder":"Your email address?","error":{"Seems like the value is invalid.","Please enter a valid email address"}}};
 	}
 	else
 	{
 		email = answers.get("email").get("text");
 		if(!answers.containsKey("phone"))
 		{
-			question = {"name":"phone","replies":{"Your mobile number?"},"input":{"type":"tel","placeholder":"Enter your phone number","error":{"Enter a valid phone number"}}};
+			question = {"name":"phone","replies":{"Please, enter your mobile number?"},"input":{"type":"tel","placeholder":"Enter your phone number","error":{"Seems like the value is invalid.","Please enter a valid phone number"},"country_code": "+91"}};
 		}
 		else
 		{
 			phone = answers.get("phone").get("text");
 			if(!answers.containsKey("age"))
 			{
-				question = {"name":"age","replies":{"Your age?"}};
+				question = {"name":"age","replies":{"May I know your age?"}};
 			}
 			else
 			{
@@ -28,7 +28,7 @@ if(context_id.equals("schedule"))
 				if(!answers.containsKey("gender"))
 				{
 					slot = {"type":"select","options":{"Male","Female","Others"}};
-					question = {"name":"gender","replies":{"Please select your gender"},"input":slot};
+					question = {"name":"gender","replies":{"Please, select your gender"},"input":slot};
 				}
 				else
 				{
@@ -36,14 +36,14 @@ if(context_id.equals("schedule"))
 					if(!answers.containsKey("blood"))
 					{
 						slot = {"type":"select","options":{"A+","O+","B+","AB+","A-","O-","B-","AB-"}};
-						question = {"name":"blood","replies":{"Select your blood group"},"input":slot};
+						question = {"name":"blood","replies":{"Please, select your blood group"},"input":slot};
 					}
 					else
 					{
 						blood = answers.get("blood").get("text");
 						if(!answers.containsKey("location"))
 						{
-							question = {"name":"location","replies":{"Your Address?"},"input":{"type":"location","radius":"2 kms","label":"Share Location","select_label":"Send my location"}};
+							question = {"name":"location","replies":{"May I know your Address?"},"input":{"type":"location","radius":"2 kms","label":"Share Location","select_label":"Send my location"}};
 						}
 						else
 						{
@@ -80,7 +80,7 @@ if(context_id.equals("schedule"))
 											slide = answers.get("slide").get("text");
 											if(!answers.containsKey("date"))
 											{
-												question = {"name":"date","replies":{"Select your appointment date"},"input":{"type":"calendar","label":"Schedule a meeting","from":"+0","to":"+5","time":false,"tz":false,"select_label":"Choose a slot"}};
+												question = {"name":"date","replies":{"Please, select your appointment date"},"input":{"type":"calendar","label":"Schedule a meeting","from":"+0","to":"+5","time":false,"tz":false,"select_label":"Choose a slot"}};
 											}
 											else
 											{
@@ -96,7 +96,7 @@ if(context_id.equals("schedule"))
 													if(!answers.containsKey("doctor"))
 													{
 														slot = {"type":"select","options":{"Ok,Thanks!"}};
-														question = {"name":"doctor","replies":{"Great! You have successfully made an appointment","Sending confirmation mail to your email id","Confirmation mail sent!"},"input":slot};
+														question = {"name":"doctor","replies":{"Great! You have successfully made an appointment","Sending confirmation mail to your email id...","Confirmation mail sent!"},"input":slot};
 													}
 													else
 													{
@@ -104,7 +104,7 @@ if(context_id.equals("schedule"))
 														if(!answers.containsKey("rating"))
 														{
 															slt6 = {"type":"star-rating","level":"5"};
-															question = {"name":"rating","replies":{"Share your experience"},"input":slt6};
+															question = {"name":"rating","replies":{"Please, share your experience"},"input":slt6};
 														}
 														else
 														{

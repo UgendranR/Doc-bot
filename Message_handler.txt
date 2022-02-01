@@ -16,7 +16,8 @@ if(!msg.isNull())
 	{
 		response.put("action","context");
 		response.put("context_id","schedule");
-		question = {"name":"name","replies":{"I just need a few more details from you to make that happen.","What is your name?"}};
+		question = {"name":"name","replies":{"I just need a few more details from you to make that happen.","What is your name?"},"input":{
+  "type":"name","placeholder" : "Enter your name","error" : ["Enter a valid name"]}};
 		response.put("questions",{question});
 	}
 	else if(msg.equalsIgnoreCase("Our Doctors"))

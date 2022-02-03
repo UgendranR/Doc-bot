@@ -39,10 +39,11 @@ Finally star rating will be asked for the service provided by the bot.
 ![Example screenshot](./images/s.JPG)
 
 ## Technologies
-* HTML5
-* CSS3
+* Deluge
+* Salesiq
+* HTML
+* CSS
 * Javascript
-* jQuery
 
 ## Status
 > Project - Completed

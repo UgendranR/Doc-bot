@@ -6,7 +6,7 @@
 ## Table of contents
 * Doc-Bot
 * ENT Care Website
-* Manual Appointment Registration.
+* Manual Appointment Registration
 
 ## About
 > The Purpose of this DoC-Bot is to help the user in setting up an appointment with the concerned ENT doctor.<br>

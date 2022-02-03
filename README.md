@@ -1,4 +1,4 @@
-# Developer - Ugendran R
+# Developers - Ugendran R, Sivasubramanian R
 
 # Task
 > Appointment confirmation Bot(Doc-bot) - https://github.com/UgendranR/Doc-bot/
@@ -9,7 +9,11 @@
 * Payment Successful
 
 ## About
-> Created a simple website where payment gateway is integrated. There is a simple donate button on homepage, on clicking the donate button, the user will land on the payment page where user can select the amount to be paid and the payment type that includes Credit Card, Netbanking, Paypal and Debit Card. On successful payment an invoice will be generated on a new page regarding completion of the payment.
+> The user will have options to check Working hours, Doctors Info, Contact Details and Can book appointment as well.
+During the Appointment process, the DoC-Bot collects information from the user namely
+User Name, User mail Id,Phone No, Age, Blood Group, User's Concern, Location, Appointment Date and Time etc. Collecting these details, the Doc-bot 
+will make an appointment and send the appointment details to the user through E-mail.
+Finally star rating will be asked for the service provided by the bot..
 
 ## Screenshots
 ![Example screenshot](./images/Homepage.JPG)<br>

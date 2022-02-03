@@ -34,9 +34,9 @@ Finally star rating will be asked for the service provided by the bot.
 ## Screenshots
 ![Example screenshot](./images/Capture1.JPG)<br>
 
-![Example screenshot](./images/Capture.JPG)<br>
+![Example screenshot](./images/Capture.jpg)<br>
 
-![Example screenshot](./images/Capture2.JPG)
+![Example screenshot](./images/Capture3.JPG)
 
 ## Technologies
 * Deluge

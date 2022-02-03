@@ -10,16 +10,16 @@
 
 ## About
 > The Purpose of this DoC-Bot is to help the user in setting up an appointment with the concerned ENT doctor.
-Various SalesIQ Scripts' input cards has been used such as
+Various SalesIQ Scripts' input cards has been used such as<br>
 i)Email<br>
-ii)Phone
-iii)Single Select Option
-iv)Multiple Select Option
-v)Range Slider
-vi)Calendar
-vii)Location
-viii)Date - Time Slots
-ix)Star Rating
+ii)Phone<br>
+iii)Single Select Option<br>
+iv)Multiple Select Option<br>
+v)Range Slider<br>
+vi)Calendar<br>
+vii)Location<br>
+viii)Date - Time Slots<br>
+ix)Star Rating<br>
 
 Apart from input cards, other additional feature is been added:
   Once the user completes the appointment process, the user will receive the confirmation mail to his/her Mail_ID.

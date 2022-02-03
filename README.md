@@ -30,9 +30,10 @@ During the Appointment process, the DoC-Bot collects information from the user n
 User Name, User mail Id,Phone No, Age, Blood Group, User's Concern, Location, Appointment Date and Time etc. Collecting these details, the Doc-bot 
 will make an appointment and send the appointment details to the user through E-mail.
 Finally star rating will be asked for the service provided by the bot.
-
-## Screenshots
+# This repo has a video on its readme :p
 https://user-images.githubusercontent.com/72851987/152409077-8fd0345f-a362-4a24-b2dc-66ece4f7f727.mp4
+## Screenshots
+
 ![Example screenshot](./images/Capture.jpg)    &emsp;  ![Example screenshot](./images/Capture2.JPG)<br><br>
 ![Example screenshot](./images/Capture1.JPG)<br><br>
 

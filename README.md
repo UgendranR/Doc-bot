@@ -1,8 +1,7 @@
-# Doc-bot
 # Developer - Ugendran R
 
 # Task
-> Payment Gateway Integration - https://github.com/UgendranR/Donation_Page
+> Appointment confirmation Bot(Doc-bot) - https://github.com/UgendranR/Doc-bot/
 
 ## Table of contents
 * Homepage

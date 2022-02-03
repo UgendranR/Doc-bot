@@ -32,12 +32,12 @@ will make an appointment and send the appointment details to the user through E-
 Finally star rating will be asked for the service provided by the bot.
 
 ## Screenshots
-![Example screenshot](./images/Capture.jpg)    &emsp;  ![Example screenshot](./images/Capture2.JPG)<br>
-![Example screenshot](./images/Capture1.JPG)<br>
+![Example screenshot](./images/Capture.jpg)    &emsp;  ![Example screenshot](./images/Capture2.JPG)<br><br>
+![Example screenshot](./images/Capture1.JPG)<br><br>
 
 
 
-![Example screenshot](./images/Capture3.JPG)
+![Example screenshot](./images/Capture3.JPG)<br><br>
 
 ## Technologies
 * Deluge

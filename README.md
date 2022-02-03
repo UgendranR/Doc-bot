@@ -1,6 +1,4 @@
-# Developers - Ugendran R, Sivasubramanian R
-
-# Task
+# Docbot
 > Appointment confirmation Bot(Doc-bot) - https://ent-care.vercel.app/
 
 ## Table of contents

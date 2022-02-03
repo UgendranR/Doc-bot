@@ -1,7 +1,7 @@
 # Developers - Ugendran R, Sivasubramanian R
 
 # Task
-> Appointment confirmation Bot(Doc-bot) - https://github.com/UgendranR/Doc-bot/
+> Appointment confirmation Bot(Doc-bot) - https://ent-care.vercel.app/
 
 ## Table of contents
 * Homepage

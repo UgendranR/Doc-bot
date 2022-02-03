@@ -4,9 +4,9 @@
 > Appointment confirmation Bot(Doc-bot) - https://ent-care.vercel.app/
 
 ## Table of contents
-* Homepage
-* Payment Gateway Interface
-* Payment Successful
+* Doc-Bot
+* ENT Care Website
+* Manual Appointment Registration
 
 ## About
 > The Purpose of this DoC-Bot is to help the user in setting up an appointment with the concerned ENT doctor.<br>

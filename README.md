@@ -32,6 +32,7 @@ will make an appointment and send the appointment details to the user through E-
 Finally star rating will be asked for the service provided by the bot.
 
 ## Screenshots
+https://user-images.githubusercontent.com/72851987/152409077-8fd0345f-a362-4a24-b2dc-66ece4f7f727.mp4
 ![Example screenshot](./images/Capture.jpg)    &emsp;  ![Example screenshot](./images/Capture2.JPG)<br><br>
 ![Example screenshot](./images/Capture1.JPG)<br><br>
 

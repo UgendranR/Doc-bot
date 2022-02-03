@@ -32,7 +32,7 @@ will make an appointment and send the appointment details to the user through E-
 Finally star rating will be asked for the service provided by the bot.
 
 ## Screenshots
-![Example screenshot](./images/Capture.jpg)<br>
+![Example screenshot](./images/Capture.jpg)![Example screenshot](./images/Capture2.jpg)<br>
 ![Example screenshot](./images/Capture1.JPG)<br>
 
 

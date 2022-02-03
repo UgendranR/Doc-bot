@@ -1,0 +1,153 @@
+response = Map();
+if(context_id.equals("schedule"))
+{
+	response.put("action","context");
+	response.put("context_id","schedule");
+	name = answers.get("name").get("text");
+	if(!answers.containsKey("email"))
+	{
+		question = {"name":"email","replies":{"May I have your email address, please?"},"input":{"type":"email","placeholder":"Your email address?","error":{"Please enter a valid email address"}}};
+	}
+	else
+	{
+		email = answers.get("email").get("text");
+		if(!answers.containsKey("phone"))
+		{
+			question = {"name":"phone","replies":{"Please, enter your mobile number?"},"input":{"type":"tel","placeholder":"Enter your phone number","error":{"Please enter a valid phone number"},"country_code": "+91"}};
+		}
+		else
+		{
+			phone = answers.get("phone").get("text");
+			if(!answers.containsKey("age"))
+			{
+				question = {"name":"age","replies":{"May I know your age?"}};
+			}
+			else
+			{
+				age = answers.get("age").get("text");
+				if(!answers.containsKey("gender"))
+				{
+					slot = {"type":"select","options":{"Male","Female","Others"}};
+					question = {"name":"gender","replies":{"Please, select your gender"},"input":slot};
+				}
+				else
+				{
+					gender = answers.get("gender").get("text");
+					if(!answers.containsKey("blood"))
+					{
+						slot = {"type":"select","options":{"A+","O+","B+","AB+","A-","O-","B-","AB-"}};
+						question = {"name":"blood","replies":{"Please, select your blood group"},"input":slot};
+					}
+					else
+					{
+						blood = answers.get("blood").get("text");
+						if(!answers.containsKey("location"))
+						{
+							question = {"name":"location","replies":{"May I know your Address?"},"input":{"type":"location","radius":"2 kms","label":"Share Location","select_label":"Send my location"}};
+						}
+						else
+						{
+							location = answers.get("location").get("text");
+							if(!answers.containsKey("concern"))
+							{
+								question = {"name":"concern","replies":{"Your Concern?"},"input":{"type":"multiple-select","options":{"Ear","Nose","Throat"},"max_selection":"3"}};
+							}
+							else
+							{
+								concern = answers.get("concern").get("text");
+								if(!answers.containsKey("covid"))
+								{
+									slot = {"type":"select","options":{"Yes","No"}};
+									question = {"name":"covid","replies":{"Are you Vaccinated?"},"input":slot};
+								}
+								else
+								{
+									covid = answers.get("covid").get("text");
+									if(!answers.containsKey("visit"))
+									{
+										slt1 = {"type":"select","options":{"First Visit","Follow-Up Visit"}};
+										question = {"name":"visit","replies":{"Are you visiting for the first time, or is it a follow-up visit?"},"input":slt1};
+									}
+									else
+									{
+										visit = answers.get("visit").get("text");
+										if(!answers.containsKey("slide"))
+										{
+											question = {"name":"slide","replies":{"When would you like to schedule the appointment?"},"input":{"type":"slider","values":{"10am-1pm","2-5 pm","6-9 pm"}}};
+										}
+										else
+										{
+											slide = answers.get("slide").get("text");
+											if(!answers.containsKey("date"))
+											{
+												question = {"name":"date","replies":{"Please, select your appointment date"},"input":{"type":"calendar","label":"Schedule a meeting","from":"+0","to":"+5","time":false,"tz":false,"select_label":"Choose a slot"}};
+											}
+											else
+											{
+												date = answers.get("date").get("text");
+												if(!answers.containsKey("success"))
+												{
+													slt5 = {"type":"select","options":{"Yes,verified."}};
+													question = {"name":"success","replies":{"Making an appointment on " + date + ".","Appointment Details:","Name: " + name,"Gender: " + gender,"Age: " + age,"Blood Group: " + blood,"Specialist: " + concern + " Specialist"," Date & Time: " + date + " " + slide,"Please verify the details before confirming your appointment"},"input":slt5};
+												}
+												else
+												{
+													company = answers.get("success").get("text");
+													if(!answers.containsKey("doctor"))
+													{
+														slot = {"type":"select","options":{"Ok,Thanks!"}};
+														question = {"name":"doctor","replies":{"Great! You have successfully made an appointment","Sending confirmation mail to your email id...","Confirmation mail sent!"},"input":slot};
+													}
+													else
+													{
+														doctor = answers.get("doctor").get("text");
+														if(!answers.containsKey("rating"))
+														{
+															slt6 = {"type":"star-rating","level":"5"};
+															question = {"name":"rating","replies":{"Please, share your experience"},"input":slt6};
+														}
+														else
+														{
+															rating = answers.get("rating").get("text");
+															sendmail
+															[
+																from :zoho.loginuserid
+																to :email
+																subject :"Appointment Detail"
+																message :"Your appointment has been confirmed.The following are the appointment details.<br><br>Appointment Details: <br> Name: " + name + "<br> Gender: " + gender + "<br>Age: " + age + "<br> Blood Group: " + blood + "<br>Specialist: " + concern + " Specialist <br> Date & Time: " + date + " " + slide + "."
+															]
+															if(!answers.containsKey("end"))
+															{
+																question = {"name":"end","replies":{"Thanks for contacting us","Have a nice day ;)"}};
+																response.put("action","end");
+																response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+																return response;
+															}
+															else
+															{
+																response.put("action","end");
+																response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+																return response;
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	response.put("questions",{question});
+}
+else if(context_id.equals("nothing"))
+{
+	response.put("action","end");
+	response.put("replies",{"Thanks for contacting us","Have a nice day ;)"});
+}
+return response;

@@ -1,0 +1,5 @@
+response = Map();
+response.put("action","reply");
+response.put("replies",{"Hey there! DoC Bot here. Welcome to Health Care ENT Centre."," What Can I do for you?"});
+response.put("suggestions",{"Schedule an appointment","Doctors Info","Working hours","Contact Details","Thanks. I'm ok for now"});
+return response;
